@@ -7,14 +7,14 @@ from typing import Any, Dict, Optional
 _SHARED_MONGO = {
     "mongo_calls_collection": "customernacfeedbacks",
     # Daily NAC / coaching narrative (same DB). Rows may include KeyCoachingRecommendations.reportText.
-    "mongo_nac_collection": "nacfeedbacks",
+    "mongo_nac_collection": "dailynacfeedbacks",
     "mongo_coaching_collection": "daily_users_coaching_vapi",
     "calls_user_id_col": "userId",
     "calls_date_col": "date",
     "nac_user_id_col": "userId",
-    "nac_date_col": "Date",
+    "nac_date_col": "date",
     "nac_text_col": "nac_feedback",
-    "nac_order_col": "Date",
+    "nac_order_col": "date",
     "coaching_user_id_col": "userId",
     "coaching_summary_col": "previous_call_summary",
     "coaching_order_col": "date",
@@ -31,7 +31,7 @@ _SHARED_MEETINGS = {
     "supabase_advisor_id_col": "id",
     "supabase_meetings_table": "meetings",
     "supabase_meetings_advisor_id_col": "advisor_id",
-    "supabase_meetings_date_col": "meeting_date",
+    "supabase_meetings_date_col": "created_at",
     # "utc_bounds": meeting_date in [London yesterday start, today start) as UTC ISO. "iso_day": equality to run_date string.
     "meetings_date_match_mode": "utc_bounds",
 }

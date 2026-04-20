@@ -13,3 +13,4 @@ pytest
 pytest-mock
 mongomock
 python-dotenv
+time-machine>=2.14.0

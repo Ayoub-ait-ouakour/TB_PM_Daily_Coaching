@@ -66,7 +66,7 @@ def main() -> None:
 
     if args.all_concepts:
         for cid in list_concept_ids():
-            batch_id, metrics = process_concept(cid, run_date=run_date)
+            batch_id, metrics = process_concept(cid, run_date=run_date, enable_recall_tracking=True)
             logger.info("[%s] batch_run_id=%s metrics=%s", cid, batch_id, metrics)
         return
 
@@ -74,12 +74,17 @@ def main() -> None:
         ids = [x.strip() for x in args.mongo_user_ids.split(",") if x.strip()]
         if not ids:
             parser.error("--mongo-user-ids requires at least one id")
-        batch_id, metrics = process_concept(args.concept, run_date=run_date, mongo_user_ids=ids)
+        batch_id, metrics = process_concept(
+            args.concept,
+            run_date=run_date,
+            mongo_user_ids=ids,
+            enable_recall_tracking=False,
+        )
         logger.info("Subset run batch_run_id=%s metrics=%s", batch_id, metrics)
         return
 
     logger.info("CLI run %s for date %s (London yesterday unless OVERRIDE_RUN_DATE)", args.concept, run_date)
-    batch_id, metrics = process_concept(args.concept, run_date=run_date)
+    batch_id, metrics = process_concept(args.concept, run_date=run_date, enable_recall_tracking=False)
     logger.info("Done batch_run_id=%s metrics=%s", batch_id, metrics)
 
 
